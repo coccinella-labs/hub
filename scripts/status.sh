@@ -1,9 +1,9 @@
 #!/bin/bash
-# Check status of all emberlamp repos
+# Check status of all coccinella-labs repos
 
-ORG="emberlamp"
+ORG="coccinella-labs"
 
-echo "Emberlamp Repository Status"
+echo "Coccinella Labs Repository Status"
 echo "============================"
 echo ""
 
