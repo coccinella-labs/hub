@@ -1,7 +1,7 @@
 #!/bin/bash
-# Run workflow on all emberlamp repos
+# Run workflow on all coccinella-labs repos
 
-ORG="emberlamp"
+ORG="coccinella-labs"
 WORKFLOW="${1:-ci.yml}"
 ACTION="${2:-}"
 
