@@ -2,13 +2,13 @@
   <img src="https://raw.githubusercontent.com/Coccinella-Labs/hub/main/.github/assets/thumbnail.png" alt="hub" width="100%">
 </p>
 
-# Emberlamp Hub
+# Coccinella Labs Hub
 
-Central hub for the emberlamp organization - connects all repositories.
+Central hub for the coccinella-labs organization - connects all repositories.
 
 ## Overview
 
-Emberlamp is a fully automated organization with 14 repositories managed through centralized control.
+Coccinella Labs is a fully automated organization with 14 repositories managed through centralized control.
 
 ## Architecture
 
@@ -44,8 +44,8 @@ All 14 repos have automated releases based on conventional commits:
 
 **Manual trigger (override):**
 ```bash
-gh workflow run release.yml -f version=patch --repo emberlamp/repo
-gh workflow run release.yml -f version=minor --repo emberlamp/repo
+gh workflow run release.yml -f version=patch --repo coccinella-labs/repo
+gh workflow run release.yml -f version=minor --repo coccinella-labs/repo
 ```
 
 **How it works:**
@@ -58,8 +58,8 @@ gh workflow run release.yml -f version=minor --repo emberlamp/repo
 **Test release sync:**
 ```bash
 for repo in general license react-template gitkeep warnings json-repo gh-pin-repo config swe-agent cli bot skills hub; do
-  tags=$(gh api repos/emberlamp/$repo/tags --jq '.[].name' | head -1)
-  releases=$(gh api repos/emberlamp/$repo/releases --jq '.[0].tag_name')
+  tags=$(gh api repos/coccinella-labs/$repo/tags --jq '.[].name' | head -1)
+  releases=$(gh api repos/coccinella-labs/$repo/releases --jq '.[0].tag_name')
   echo "$repo: tag=$tags release=$releases"
 done
 ```
@@ -81,9 +81,9 @@ All repos have an automation workflow that runs daily and on-demand:
 
 **Usage:**
 ```bash
-gh workflow run automation.yml -f action=sync --repo emberlamp/general
-gh workflow run automation.yml -f action=report --repo emberlamp/general
-gh workflow run automation.yml -f action=all --repo emberlamp/general
+gh workflow run automation.yml -f action=sync --repo coccinella-labs/general
+gh workflow run automation.yml -f action=report --repo coccinella-labs/general
+gh workflow run automation.yml -f action=all --repo coccinella-labs/general
 ```
 
 ## Repositories
@@ -91,41 +91,41 @@ gh workflow run automation.yml -f action=all --repo emberlamp/general
 ### Core Control
 | Repo | Purpose |
 |------|---------|
-| [hub](https://github.com/emberlamp/hub) | This hub - central entry point |
-| [config](https://github.com/emberlamp/config) | Single source of truth (repos.json) |
-| [skills](https://github.com/emberlamp/skills) | Agent capabilities & CLI extensions |
-| [swe-agent](https://github.com/emberlamp/swe-agent) | Software engineering agent |
-| [bot](https://github.com/emberlamp/bot) | Automation workflows |
+| [hub](https://github.com/coccinella-labs/hub) | This hub - central entry point |
+| [config](https://github.com/coccinella-labs/config) | Single source of truth (repos.json) |
+| [skills](https://github.com/coccinella-labs/skills) | Agent capabilities & CLI extensions |
+| [swe-agent](https://github.com/coccinella-labs/swe-agent) | Software engineering agent |
+| [bot](https://github.com/coccinella-labs/bot) | Automation workflows |
 
 ### Applications
 | Repo | Purpose |
 |------|---------|
-| [general](https://github.com/emberlamp/general) | Main application |
+| [general](https://github.com/coccinella-labs/general) | Main application |
 
 ### Templates
 | Repo | Purpose |
 |------|---------|
-| [react-template](https://github.com/emberlamp/react-template) | React + Vite + TypeScript |
+| [react-template](https://github.com/coccinella-labs/react-template) | React + Vite + TypeScript |
 
 ### CLI Tools
 | Repo | Purpose |
 |------|---------|
-| [cli](https://github.com/emberlamp/cli) | Master CLI for all repos |
-| [gh-pin-repo](https://github.com/emberlamp/gh-pin-repo) | CLI for pinning repos |
+| [cli](https://github.com/coccinella-labs/cli) | Master CLI for all repos |
+| [gh-pin-repo](https://github.com/coccinella-labs/gh-pin-repo) | CLI for pinning repos |
 
 ### Resources
 | Repo | Purpose |
 |------|---------|
-| [license](https://github.com/emberlamp/license) | MIT License |
-| [warnings](https://github.com/emberlamp/warnings) | Warning messages |
-| [json-repo](https://github.com/emberlamp/json-repo) | JSON schemas |
-| [gitkeep](https://github.com/emberlamp/gitkeep) | Placeholder |
+| [license](https://github.com/coccinella-labs/license) | MIT License |
+| [warnings](https://github.com/coccinella-labs/warnings) | Warning messages |
+| [json-repo](https://github.com/coccinella-labs/json-repo) | JSON schemas |
+| [gitkeep](https://github.com/coccinella-labs/gitkeep) | Placeholder |
 
 ## Quick Start
 
 ```bash
-# Clone all repos to /tmp/emberlamp/
-git clone https://github.com/emberlamp/swe-agent.git /tmp/swe-agent
+# Clone all repos to /tmp/coccinella-labs/
+git clone https://github.com/coccinella-labs/swe-agent.git /tmp/swe-agent
 cd /tmp/swe-agent
 python agent.py clone-all
 
@@ -143,20 +143,20 @@ Each repo has 5 workflows:
 - **Release** - Auto version bump & release on push
 - **Automation** - Sync, backup, report (schedule/manual)
 - **Label PRs** - Auto-label PRs based on changed files
-- **Emberlamp Auto Bot** - Daily sync and org management
+- **Coccinella Labs Auto Bot** - Daily sync and org management
 
 ### Trigger Release on All Repos
 
 ```bash
 # Run release workflow on all 14 repos
 for repo in general react-template swe-agent gh-pin-repo config cli bot license warnings json-repo gitkeep skills hub; do
-  gh workflow run release.yml -R emberlamp/$repo &
+  gh workflow run release.yml -R coccinella-labs/$repo &
 done
 wait
 
 # Check results
 for repo in general react-template swe-agent gh-pin-repo config cli bot license warnings json-repo gitkeep skills hub; do
-  gh run list --repo emberlamp/$repo --limit 1
+  gh run list --repo coccinella-labs/$repo --limit 1
 done
 ```
 
@@ -164,18 +164,18 @@ done
 
 ```bash
 # Trigger specific version bump
-gh workflow run release.yml -f version=minor -R emberlamp/hub
-gh workflow run release.yml -f version=patch -R emberlamp/hub
+gh workflow run release.yml -f version=minor -R coccinella-labs/hub
+gh workflow run release.yml -f version=patch -R coccinella-labs/hub
 ```
 
 ## Documentation
 
-- [Config Repo](https://github.com/emberlamp/config) - Repository list
-- [Skills Repo](https://github.com/emberlamp/skills) - Agent capabilities
-- [.github Profile](https://github.com/emberlamp/.github) - Org overview
+- [Config Repo](https://github.com/coccinella-labs/config) - Repository list
+- [Skills Repo](https://github.com/coccinella-labs/skills) - Agent capabilities
+- [.github Profile](https://github.com/coccinella-labs/.github) - Org overview
 
 ## License
 
-MIT License - See [license](https://github.com/emberlamp/license)
+MIT License - See [license](https://github.com/coccinella-labs/license)
 
-© 2026 Emberlamp
+© 2026 Coccinella Labs
