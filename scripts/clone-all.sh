@@ -1,13 +1,13 @@
 #!/bin/bash
-# Clone all emberlamp repos to /tmp/emberlamp/
+# Clone all coccinella-labs repos to /tmp/coccinella-labs/
 
-ORG="emberlamp"
-TARGET_DIR="/tmp/emberlamp"
+ORG="coccinella-labs"
+TARGET_DIR="/tmp/coccinella-labs"
 
 # Get repos from config
 REPOS=$(curl -s "https://raw.githubusercontent.com/$ORG/config/main/repos.json" | jq -r '.repos[]')
 
-echo "Cloning all emberlamp repos to $TARGET_DIR..."
+echo "Cloning all coccinella-labs repos to $TARGET_DIR..."
 
 mkdir -p "$TARGET_DIR"
 
